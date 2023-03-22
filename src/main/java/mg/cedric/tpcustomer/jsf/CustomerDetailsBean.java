@@ -5,7 +5,6 @@
 package mg.cedric.tpcustomer.jsf;
 
 import  jakarta.inject.Named;
-import jakarta.enterprise.context.Dependent;
 import java.io.Serializable;
 import jakarta.ejb.EJB;
 import jakarta.faces.view.ViewScoped;
@@ -18,8 +17,8 @@ import mg.cedric.tpcustomer.entities.Customer;
  * @author CEDRIC
  */
 @Named(value = "customerDetailsBean")
-@Dependent
-public class CustomerDetailsBean {
+@ViewScoped
+public class CustomerDetailsBean implements Serializable{
     
     private int idCustomer;
     private Customer customer;
