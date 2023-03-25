@@ -21,7 +21,7 @@ public class DiscountManager {
     private EntityManager em;
 
     public List<Discount> getAllDiscounts() {
-        Query query = em.createNamedQuery("Discount.findAll");
+        Query query = em.createNamedQuery("Discount.findAllSortedByRate");
         return query.getResultList();
     }
 
