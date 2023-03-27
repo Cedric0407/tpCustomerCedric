@@ -14,6 +14,9 @@
     </h:head>
     <h:body>
         <h:form rendered='#{customerDetailsBean.customer != null}'>
+            
+            <h:messages infoStyle="color:darkgreen" errorStyle="color:darkred"/>
+            
             <h1><h:outputText value="Create/Edit"/></h1>
             <h:panelGrid columns="2">
                 <h:outputLabel value="CustomerId:" for="customerId" />
@@ -54,15 +57,14 @@
                         />
                 </h:selectOneMenu>
 
-                <h:button id="back" value="Revenir à la liste" outcome="customerList"/>
+                <h:button id="back" value="Revenir à la liste" outcome="CustomerList"/>
                 <h:commandButton id="update" value="Enregistrer" action="#{customerDetailsBean.update}"/>
                 
                 
             </h:panelGrid>
-             <h:messages/>
+            
+            
              
-             
-
         </h:form>
         
         <h:outputText value="Aucun client avec l'id #{customerDetailsBean.idCustomer} !" rendered='#{customerDetailsBean.customer == null}'/>

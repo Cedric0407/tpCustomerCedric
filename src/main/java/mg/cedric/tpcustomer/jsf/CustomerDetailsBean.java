@@ -15,6 +15,9 @@ import mg.cedric.tpcustomer.entities.Customer;
 
 import mg.cedric.tpcustomer.ejb.DiscountManager;
 import mg.cedric.tpcustomer.entities.Discount;
+import jakarta.faces.application.FacesMessage;
+import jakarta.faces.application.FacesMessage.Severity;
+import jakarta.faces.context.FacesContext;
 
 
 /**
@@ -58,8 +61,26 @@ public class CustomerDetailsBean implements Serializable{
   public String update() {
     // Modifie la base de données.
     // Il faut affecter à customer (sera expliqué dans le cours).
-    customer = customerManager.update(customer);
-    return "customerList";
+    
+    Severity severity = null;  
+    String summary = "";
+    String message = "";
+    try{
+        customer = customerManager.update(customer);
+        severity = FacesMessage.SEVERITY_INFO;
+        summary = "update done";
+        message = customer.getName()+" is updated.";
+    }catch(Exception e){
+        severity = FacesMessage.SEVERITY_ERROR;
+        summary = "update failed";
+        message = e.getMessage();
+        
+    }finally{
+        FacesMessage facesMessage = new FacesMessage(severity, summary, message);
+        FacesContext.getCurrentInstance().addMessage(null, facesMessage);
+    }
+        
+    return "CustomerList";
   }
 
   public void loadCustomer() {

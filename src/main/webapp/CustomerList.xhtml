@@ -8,6 +8,8 @@
         <title>Liste des clients</title>
     </h:head>
     <h:body>
+        
+        
         <h:form>
             <p:dataTable 
                 value="#{customerBean.customers}" 
@@ -58,6 +60,9 @@
                     <h:outputText value="#{item.discount.code} : #{item.discount.rate} %"/>
                 </p:column>
             </p:dataTable>
+            
+            <h:messages infoStyle="color:darkgreen" errorStyle="color:darkred"/>
+            
         </h:form>
     </h:body>
 </html>
